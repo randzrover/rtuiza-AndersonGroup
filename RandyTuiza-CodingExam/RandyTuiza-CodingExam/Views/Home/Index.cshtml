@@ -1,0 +1,83 @@
+﻿@model IEnumerable<RandyTuiza_CodingExam.Models.ResultModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Select Combination</h3>
+
+@using (Html.BeginForm("Index", "Home", null, FormMethod.Post, new { id = "IndexForm" }))
+{
+<div class="row">
+    <div class="col-md-4">
+        <table>
+            <tr>
+                <td colspan="3">
+                    <input id="inputed" type="text" value="" class="form-control" name="combination" style="width:100px" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="7" class="btn btn-default btn-sm" />
+                </td>
+                <td>
+                    <input type="button" value="8" class="btn btn-default btn-sm" />
+                </td>
+                <td>
+                    <input type="button" value="9" class="btn btn-default btn-sm" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="4" class="btn btn-default btn-sm" />
+                </td>
+                <td>
+                    <input type="button" value="5" class="btn btn-default btn-sm" />
+                </td>
+                <td>
+                    <input type="button" value="6" class="btn btn-default btn-sm" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="1" class="btn btn-default btn-sm" />
+                </td>
+                <td>
+                    <input type="button" value="2" class="btn btn-default btn-sm" />
+                </td>
+                <td>
+                    <input type="button" value="3" class="btn btn-default btn-sm" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="button" value="0" class="btn btn-default btn-sm" />
+                </td>
+
+                <td colspan="2">
+                    <input type="submit" value="Enter" class="btn btn-default btn-sm" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <span>Result for:<b> @Model.Select(s => s.Search.ToString()).FirstOrDefault()</b></span>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>@item.Words</li>
+            }
+        </ul>
+    </div>
+    </div>
+}
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('input[type="button"]').click(function () {
+                $('#inputed').val($('#inputed').val() + $(this).val());
+            });
+        });
+    </script>
+}
